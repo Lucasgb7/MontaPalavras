@@ -1,0 +1,32 @@
+body{
+    background-color: #7aecf4;
+}
+
+.imagem{
+    position: relative;
+    top: 50px;
+    left: 30%;
+    border: 5px;
+    border-color: black;
+    border-style: solid;
+}
+
+.preenchimento{
+    position: relative;
+    top: 120px;
+}
+
+.campo{
+    display: inline;
+}
+
+input{
+    width: 90px;
+    height: 90px;
+    font-size: 80px;
+    text-align: center;
+    border: 5px;
+    margin: 10px;
+    border-color: black;
+    border-style: solid;
+}
