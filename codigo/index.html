@@ -14,12 +14,12 @@
     <script>
         var app = angular.module('app', []);
     </script>
-    <title>CNZHS solutions</title>
+    <title>CNZHS Solutions</title>
 </head>
 
 <body ng-app="app" ng-controller="IndexController">
     <div class="img1">
-        <img id="imagem" src="../imagens/aviao.png" alt="maca" class="imagem" width="300px" height="300px">
+        <img id="imagem" src="{{faseDaVez.imagem}}" alt="{{faseDaVez.palavra}}" class="imagem" width="300px" height="300px">
     </div>
 
     <div>
@@ -30,7 +30,7 @@
     </div>
 
     <button type="button" id="btn-confirma" class="btn btn-success verOrto" ng-click="confirma()">Verificar Ortografia</button>
-    
+
     <div class="preenchimento">
         <form class="campo" ng-repeat="t in index |filter:{ index: '!x'}">
             <input id="preencher{{t.index}}" value="" class="mostrarLetras" type="text" ng-click="removeLetra()">
@@ -38,16 +38,7 @@
     </div>
 
     <div class="div_letras">
-        <button type="button" id="btn0" value="A" class="btn btn-primary btn-lg letras" ng-click="addLetra(0)">A</button>
-        <button type="button" id="btn1" value="U" class="btn btn-primary btn-lg letras" ng-click="addLetra(1)">U</button>
-        <button type="button" id="btn2" value="I" class="btn btn-primary btn-lg letras" ng-click="addLetra(2)">I</button>
-        <button type="button" id="btn3" value="M" class="btn btn-primary btn-lg letras" ng-click="addLetra(3)">M</button>
-        <button type="button" id="btn4" value="E" class="btn btn-primary btn-lg letras" ng-click="addLetra(4)">E</button>
-        <button type="button" id="btn5" value="V" class="btn btn-primary btn-lg letras" ng-click="addLetra(5)">V</button>
-        <button type="button" id="btn6" value="O" class="btn btn-primary btn-lg letras" ng-click="addLetra(6)">O</button>
-        <button type="button" id="btn7" value="A" class="btn btn-primary btn-lg letras" ng-click="addLetra(7)">A</button>
-        <button type="button" id="btn8" value="Ã" class="btn btn-primary btn-lg letras" ng-click="addLetra(8)">Ã</button>
-        <button type="button" id="btn9" value="W" class="btn btn-primary btn-lg letras" ng-click="addLetra(9)">W</button>
+        <button ng-repeat="letra in faseDaVez.letras track by $index" type="button" value="{{letra}}" class="btn btn-primary btn-lg letras" ng-click="addLetra(letra)">{{letra}}</button>
     </div>
 
     <!-- Controller -->

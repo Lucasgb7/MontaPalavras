@@ -1,133 +1,125 @@
 app.controller('IndexController', function($scope) {
     $scope.imagens_palavras = [{
             palavra: "AVIÃO",
+            letras: "MÍABVÃOWI",
             imagem: "../imagens/aviao.png",
-            letras: "AVIÃOAUMWE"
+            completada: false
         },
         {
             palavra: "BICICLETA",
+            letras: "IÇCENLBVTÁIA",
             imagem: "../imagens/bicicleta.png",
-            letras: "BICICLETAS"
+            completada: false
         },
         {
             palavra: "BOLA",
+            letras: "JLTARBOÃ",
             imagem: "../imagens/bola.png",
-            letras: "BOLAIUCEHA"
+            completada: false
         },
         {
             palavra: "CACHORRO",
+            letras: "PCQRJOCHAARÔÃ",
             imagem: "../imagens/cachorro.png",
-            letras: "CACHORROÇK"
+            completada: false
         },
         {
             palavra: "CARRO",
+            letras: "CVRAARÇU",
             imagem: "../imagens/carro.png",
-            letras: "CARROKÇQUO"
+            completada: false
         },
         {
             palavra: "GALINHA",
+            letras: "BRIAZLGQTNAH",
             imagem: "../imagens/galinha.png",
-            letras: "GALINHACEQ"
+            completada: false
         },
         {
             palavra: "LEÃO",
+            letras: "ÕÃÊEILO",
             imagem: "../imagens/leao.png",
-            letras: "LEÃOAUMINC"
+            completada: false
         },
         {
             palavra: "PÁSSARO",
+            letras: "FAÁLARSPA",
             imagem: "../imagens/passaro.png",
-            letras: "PÁSSAROAÇZ"
+            completada: false
         },
         {
             palavra: "PEIXE",
+            letras: "VEVBXIPLE",
             imagem: "../imagens/peixe.png",
-            letras: "PEIXESCHÇA"
+            completada: false
         },
         {
             palavra: "QUEIJO",
+            letras: "KYEXOQJAÍIÛU",
             imagem: "../imagens/queijo.png",
-            letras: "QUEIJOGKXS"
+            completada: false
         }
     ]
+    $scope.faseDaVez = selecionaNovaFase() // Define a fase inicial
 
     $scope.selecionada = 0;
     $scope.selecionadaTAM = 5;
-    $scope.index = [{index: '0'},{index:'1'},{index:'2'},{index:'3'},{index:'4'},{index:'x'},{index:'x'},{index:'x'},{index:'x'},{index:'x'}];
+    $scope.index = [{ index: '0' }, { index: '1' }, { index: '2' }, { index: '3' }, { index: '4' }, { index: 'x' }, { index: 'x' }, { index: 'x' }, { index: 'x' }, { index: 'x' }];
 
-    $scope.addLetra = function(btn){
-        var value;
-        switch(btn){
-            case 0:
-                value = document.getElementById('btn0').value;
-                break;
-            case 1:
-                value = document.getElementById('btn1').value;
-                break;
-            case 2:
-                value = document.getElementById('btn2').value;
-                break;
-            case 3:
-                value = document.getElementById('btn3').value;
-                break;
-            case 4:
-                value = document.getElementById('btn4').value;
-                break;
-            case 5:
-                value = document.getElementById('btn5').value;
-                break;
-            case 6:
-                value = document.getElementById('btn6').value;
-                break;
-            case 7:
-                value = document.getElementById('btn7').value;
-                break;
-            case 8:
-                value = document.getElementById('btn8').value;
-                break;
-            case 9:
-                value = document.getElementById('btn9').value;
-                break;
-        }
-        for(var i=0; i<$scope.selecionadaTAM; i++){
-            var elemento = 'preencher'+i;
-            if(document.getElementById(elemento).value == ""){
-                document.getElementById(elemento).value=value;
+    function selecionaNovaFase() { // Seleciona uma nova fase
+        if (!$scope.imagens_palavras.find(function(e) { return e.completada === false })) { zerouJogo() }
+        // Verifica se todas as fases já foram completas
+        do {
+            var indice = Math.floor(Math.random() * $scope.imagens_palavras.length) // Pega um indice pelo vetor de palavras
+        } while ($scope.imagens_palavras[indice].completada) // Verifica se já foi completada
+
+        return $scope.imagens_palavras[indice] // Retorna a que não foi completada
+    }
+
+    function zerouJogo() {
+        // Interface para qundo ele completou o jogo
+    }
+
+    $scope.addLetra = function(letra) {
+        for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
+            var elemento = 'preencher' + i;
+            if (document.getElementById(elemento).value == "") {
+                document.getElementById(elemento).value = value;
                 break;
             }
         }
     }
 
-    $scope.removeLetra = function(x){
+    $scope.removeLetra = function(x) {
         //fazer funcao pra remover a letra do quadrado quando o usuario clica no msm
     }
 
-    $scope.confirma = function(){
-        var palavraPreenchida="";
-        for(var i=0; i<$scope.selecionadaTAM; i++){
-            var elemento = "preencher"+i;
+    $scope.confirma = function() {
+        var palavraPreenchida = "";
+        for (var i = 0; i < $scope.selecionadaTAM; i++) {
+            var elemento = "preencher" + i;
             palavraPreenchida += document.getElementById(elemento).value;
         }
-        if(palavraPreenchida == $scope.imagens_palavras[$scope.selecionada].palavra){
+        if (palavraPreenchida == $scope.imagens_palavras[$scope.selecionada].palavra) {
             var pontuacao = parseInt(document.getElementById('pontuacao').value, 10) + $scope.selecionadaTAM;
             document.getElementById('pontuacao').value = pontuacao;
 
             var anterior = $scope.selecionada;
-            while(anterior == $scope.selecionada){
+            while (anterior == $scope.selecionada) {
                 $scope.selecionada = Math.floor(Math.random() * 10);
             }
             $scope.selecionadaTAM = $scope.imagens_palavras[$scope.selecionada].palavra.length;
-            for(var i=0; i<10; i++){
-                if(i<$scope.selecionadaTAM){
+            for (var i = 0; i < 10; i++) {
+                if (i < $scope.selecionadaTAM) {
                     $scope.index[i].index = i;
-                }else{
+                } else {
                     $scope.index[i].index = 'x';
                 }
             }
-            document.getElementById('imagem').src=$scope.imagens_palavras[$scope.selecionada].imagem;
-            
+            document.getElementById('imagem').src = $scope.imagens_palavras[$scope.selecionada].imagem;
+
             var letras = $scope.imagens_palavras[$scope.selecionada].letras;
-            var shuffledLetras = letras.split('').sort(function(){return 0.5-Math.random()}).join('');
+            var shuffledLetras = letras.split('').sort(function() { return 0.5 - Math.random() }).join('');
 
             document.getElementById('btn0').value = shuffledLetras.charAt(0);
             document.getElementById('btn0').innerHTML = shuffledLetras.charAt(0);
@@ -150,11 +142,11 @@ app.controller('IndexController', function($scope) {
             document.getElementById('btn9').value = shuffledLetras.charAt(9);
             document.getElementById('btn9').innerHTML = shuffledLetras.charAt(9);
 
-            for(var i=0; i<$scope.selecionadaTAM; i++){
-                var elemento = "preencher"+i;
-                document.getElementById(elemento).value="";
+            for (var i = 0; i < $scope.selecionadaTAM; i++) {
+                var elemento = "preencher" + i;
+                document.getElementById(elemento).value = "";
             }
-        }else{
+        } else {
             alert("TA ERRADO SEU MERDA!!!");
         }
     }
