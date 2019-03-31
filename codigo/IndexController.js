@@ -1,53 +1,161 @@
 app.controller('IndexController', function($scope) {
     $scope.imagens_palavras = [{
-            palavra: "Avião",
-            imagem: "../Imagens/aviao.png",
+            palavra: "AVIÃO",
+            imagem: "../imagens/aviao.png",
+            letras: "AVIÃOAUMWE"
         },
         {
-            palavra: "Bicicleta",
-            imagem: "../Imagens/bicicleta.png",
+            palavra: "BICICLETA",
+            imagem: "../imagens/bicicleta.png",
+            letras: "BICICLETAS"
         },
         {
-            palavra: "Bola",
-            imagem: "../Imagens/bola.png",
+            palavra: "BOLA",
+            imagem: "../imagens/bola.png",
+            letras: "BOLAIUCEHA"
         },
         {
-            palavra: "Cachorro",
-            imagem: "../Imagens/cachorro.png",
+            palavra: "CACHORRO",
+            imagem: "../imagens/cachorro.png",
+            letras: "CACHORROÇK"
         },
         {
-            palavra: "Carro",
-            imagem: "../Imagens/carro.png",
+            palavra: "CARRO",
+            imagem: "../imagens/carro.png",
+            letras: "CARROKÇQUO"
         },
         {
-            palavra: "Galinha",
-            imagem: "../Imagens/galinha.png",
+            palavra: "GALINHA",
+            imagem: "../imagens/galinha.png",
+            letras: "GALINHACEQ"
         },
         {
-            palavra: "Leão",
-            imagem: "../Imagens/leao.png",
+            palavra: "LEÃO",
+            imagem: "../imagens/leao.png",
+            letras: "LEÃOAUMINC"
         },
         {
-            palavra: "Pássaro",
-            imagem: "../Imagens/passaro.png"
+            palavra: "PÁSSARO",
+            imagem: "../imagens/passaro.png",
+            letras: "PÁSSAROAÇZ"
         },
         {
-            palavra: "Peixe",
-            imagem: "../Imagens/peixe.png"
+            palavra: "PEIXE",
+            imagem: "../imagens/peixe.png",
+            letras: "PEIXESCHÇA"
         },
         {
-            palavra: "Queijo",
-            imagem: "../Imagens/queijo.png"
+            palavra: "QUEIJO",
+            imagem: "../imagens/queijo.png",
+            letras: "QUEIJOGKXS"
         }
     ]
 
-    var palavra = "Cachorro" // Fazendo uma função pra testar um numero aleatorio de letras que devem aparecer
-    var numeroDeLetras = function(palavra) {
-        var valor = Math.random()
-        if (valor >= palavra.length) {
-            return valor
+    $scope.selecionada = 0;
+    $scope.selecionadaTAM = 5;
+    $scope.index = [{index: '0'},{index:'1'},{index:'2'},{index:'3'},{index:'4'},{index:'x'},{index:'x'},{index:'x'},{index:'x'},{index:'x'}];
+
+    $scope.addLetra = function(btn){
+        var value;
+        switch(btn){
+            case 0:
+                value = document.getElementById('btn0').value;
+                break;
+            case 1:
+                value = document.getElementById('btn1').value;
+                break;
+            case 2:
+                value = document.getElementById('btn2').value;
+                break;
+            case 3:
+                value = document.getElementById('btn3').value;
+                break;
+            case 4:
+                value = document.getElementById('btn4').value;
+                break;
+            case 5:
+                value = document.getElementById('btn5').value;
+                break;
+            case 6:
+                value = document.getElementById('btn6').value;
+                break;
+            case 7:
+                value = document.getElementById('btn7').value;
+                break;
+            case 8:
+                value = document.getElementById('btn8').value;
+                break;
+            case 9:
+                value = document.getElementById('btn9').value;
+                break;
         }
-        numeroDeLetras(palavra)
+        for(var i=0; i<$scope.selecionadaTAM; i++){
+            var elemento = 'preencher'+i;
+            if(document.getElementById(elemento).value == ""){
+                document.getElementById(elemento).value=value;
+                break;
+            }
+        }
     }
-    $scope.numeroDeLetras = numeroDeLetras(palavra) // Teste deu errado :(
+
+    $scope.removeLetra = function(x){
+        //fazer funcao pra remover a letra do quadrado quando o usuario clica no msm
+    }
+
+    $scope.confirma = function(){
+        var palavraPreenchida="";
+        for(var i=0; i<$scope.selecionadaTAM; i++){
+            var elemento = "preencher"+i;
+            palavraPreenchida += document.getElementById(elemento).value;
+        }
+        if(palavraPreenchida == $scope.imagens_palavras[$scope.selecionada].palavra){
+            var pontuacao = parseInt(document.getElementById('pontuacao').value, 10) + $scope.selecionadaTAM;
+            document.getElementById('pontuacao').value = pontuacao;
+
+            var anterior = $scope.selecionada;
+            while(anterior == $scope.selecionada){
+                $scope.selecionada = Math.floor(Math.random() * 10);
+            }
+            $scope.selecionadaTAM = $scope.imagens_palavras[$scope.selecionada].palavra.length;
+            for(var i=0; i<10; i++){
+                if(i<$scope.selecionadaTAM){
+                    $scope.index[i].index = i;
+                }else{
+                    $scope.index[i].index = 'x';
+                }
+            }
+            document.getElementById('imagem').src=$scope.imagens_palavras[$scope.selecionada].imagem;
+            
+            var letras = $scope.imagens_palavras[$scope.selecionada].letras;
+            var shuffledLetras = letras.split('').sort(function(){return 0.5-Math.random()}).join('');
+
+            document.getElementById('btn0').value = shuffledLetras.charAt(0);
+            document.getElementById('btn0').innerHTML = shuffledLetras.charAt(0);
+            document.getElementById('btn1').value = shuffledLetras.charAt(1);
+            document.getElementById('btn1').innerHTML = shuffledLetras.charAt(1);
+            document.getElementById('btn2').value = shuffledLetras.charAt(2);
+            document.getElementById('btn2').innerHTML = shuffledLetras.charAt(2);
+            document.getElementById('btn3').value = shuffledLetras.charAt(3);
+            document.getElementById('btn3').innerHTML = shuffledLetras.charAt(3);
+            document.getElementById('btn4').value = shuffledLetras.charAt(4);
+            document.getElementById('btn4').innerHTML = shuffledLetras.charAt(4);
+            document.getElementById('btn5').value = shuffledLetras.charAt(5);
+            document.getElementById('btn5').innerHTML = shuffledLetras.charAt(5);
+            document.getElementById('btn6').value = shuffledLetras.charAt(6);
+            document.getElementById('btn6').innerHTML = shuffledLetras.charAt(6);
+            document.getElementById('btn7').value = shuffledLetras.charAt(7);
+            document.getElementById('btn7').innerHTML = shuffledLetras.charAt(7);
+            document.getElementById('btn8').value = shuffledLetras.charAt(8);
+            document.getElementById('btn8').innerHTML = shuffledLetras.charAt(8);
+            document.getElementById('btn9').value = shuffledLetras.charAt(9);
+            document.getElementById('btn9').innerHTML = shuffledLetras.charAt(9);
+
+            for(var i=0; i<$scope.selecionadaTAM; i++){
+                var elemento = "preencher"+i;
+                document.getElementById(elemento).value="";
+            }
+        }else{
+            alert("TA ERRADO SEU MERDA!!!");
+        }
+    }
 })
