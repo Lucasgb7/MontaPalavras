@@ -62,10 +62,6 @@ app.controller('IndexController', function($scope) {
     ]
     $scope.faseDaVez = selecionaNovaFase() // Define a fase inicial
 
-    $scope.selecionada = 0;
-    $scope.selecionadaTAM = 5;
-    $scope.index = [{ index: '0' }, { index: '1' }, { index: '2' }, { index: '3' }, { index: '4' }, { index: 'x' }, { index: 'x' }, { index: 'x' }, { index: 'x' }, { index: 'x' }];
-
     function selecionaNovaFase() { // Seleciona uma nova fase
         if (!$scope.imagens_palavras.find(function(e) { return e.completada === false })) { zerouJogo() }
         // Verifica se todas as fases já foram completas
@@ -81,6 +77,7 @@ app.controller('IndexController', function($scope) {
     }
 
     $scope.addLetra = function(letra) {
+
         for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
             var elemento = 'preencher' + i;
             if (document.getElementById(elemento).value == "") {

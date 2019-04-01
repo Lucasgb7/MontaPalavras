@@ -25,15 +25,15 @@
     <div>
         <form class="score">
             <span>Pontuação:</span>
-            <input id="pontuacao" value=0 class="pontuacao" type="number">
+            <button id="pontuacao" value=0 class="pontuacao" type="number"></button>
         </form>
     </div>
 
     <button type="button" id="btn-confirma" class="btn btn-success verOrto" ng-click="confirma()">Verificar Ortografia</button>
 
     <div class="preenchimento">
-        <form class="campo" ng-repeat="t in index |filter:{ index: '!x'}">
-            <input id="preencher{{t.index}}" value="" class="mostrarLetras" type="text" ng-click="removeLetra()">
+        <form class="campo" ng-repeat="letra in faseDaVez.palavra track by $index">
+            <button value="" class="mostrarLetras" type="text" ng-click="removeLetra()"></button>
         </form>
     </div>
 
