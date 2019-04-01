@@ -53,81 +53,49 @@ app.controller('IndexController', function($scope) {
 
     $scope.selecionada = 0;
     $scope.selecionadaTAM = 5;
-    $scope.index = [{index: '0'},{index:'1'},{index:'2'},{index:'3'},{index:'4'},{index:'x'},{index:'x'},{index:'x'},{index:'x'},{index:'x'}];
+    $scope.index = [{ index: '0' }, { index: '1' }, { index: '2' }, { index: '3' }, { index: '4' }, { index: 'x' }, { index: 'x' }, { index: 'x' }, { index: 'x' }, { index: 'x' }];
 
-    $scope.addLetra = function(btn){
-        var value;
-        switch(btn){
-            case 0:
-                value = document.getElementById('btn0').value;
-                break;
-            case 1:
-                value = document.getElementById('btn1').value;
-                break;
-            case 2:
-                value = document.getElementById('btn2').value;
-                break;
-            case 3:
-                value = document.getElementById('btn3').value;
-                break;
-            case 4:
-                value = document.getElementById('btn4').value;
-                break;
-            case 5:
-                value = document.getElementById('btn5').value;
-                break;
-            case 6:
-                value = document.getElementById('btn6').value;
-                break;
-            case 7:
-                value = document.getElementById('btn7').value;
-                break;
-            case 8:
-                value = document.getElementById('btn8').value;
-                break;
-            case 9:
-                value = document.getElementById('btn9').value;
-                break;
-        }
-        for(var i=0; i<$scope.selecionadaTAM; i++){
-            var elemento = 'preencher'+i;
-            if(document.getElementById(elemento).value == ""){
-                document.getElementById(elemento).value=value;
+    $scope.addLetra = function(btn) {
+        var id = 'btn' + btn;
+        for (var i = 0; i < $scope.selecionadaTAM; i++) {
+            var elemento = 'preencher' + i;
+            if (document.getElementById(elemento).value == "") {
+                document.getElementById(elemento).value = document.getElementById(id).value;
                 break;
             }
         }
     }
 
-    $scope.removeLetra = function(x){
+    $scope.removeLetra = function(x) {
         //fazer funcao pra remover a letra do quadrado quando o usuario clica no msm
     }
 
-    $scope.confirma = function(){
-        var palavraPreenchida="";
-        for(var i=0; i<$scope.selecionadaTAM; i++){
-            var elemento = "preencher"+i;
+    $scope.confirma = function() {
+        var palavraPreenchida = "";
+        for (var i = 0; i < $scope.selecionadaTAM; i++) {
+            var elemento = "preencher" + i;
             palavraPreenchida += document.getElementById(elemento).value;
         }
-        if(palavraPreenchida == $scope.imagens_palavras[$scope.selecionada].palavra){
+        if (palavraPreenchida == $scope.imagens_palavras[$scope.selecionada].palavra) {
             var pontuacao = parseInt(document.getElementById('pontuacao').value, 10) + $scope.selecionadaTAM;
             document.getElementById('pontuacao').value = pontuacao;
 
             var anterior = $scope.selecionada;
-            while(anterior == $scope.selecionada){
+            while (anterior == $scope.selecionada) {
                 $scope.selecionada = Math.floor(Math.random() * 10);
             }
             $scope.selecionadaTAM = $scope.imagens_palavras[$scope.selecionada].palavra.length;
-            for(var i=0; i<10; i++){
-                if(i<$scope.selecionadaTAM){
+            for (var i = 0; i < 10; i++) {
+                if (i < $scope.selecionadaTAM) {
                     $scope.index[i].index = i;
-                }else{
+                } else {
                     $scope.index[i].index = 'x';
                 }
             }
-            document.getElementById('imagem').src=$scope.imagens_palavras[$scope.selecionada].imagem;
-            
+            document.getElementById('imagem').src = $scope.imagens_palavras[$scope.selecionada].imagem;
+
             var letras = $scope.imagens_palavras[$scope.selecionada].letras;
-            var shuffledLetras = letras.split('').sort(function(){return 0.5-Math.random()}).join('');
+            var shuffledLetras = letras.split('').sort(function() { return 0.5 - Math.random() }).join('');
 
             document.getElementById('btn0').value = shuffledLetras.charAt(0);
             document.getElementById('btn0').innerHTML = shuffledLetras.charAt(0);
@@ -150,11 +118,11 @@ app.controller('IndexController', function($scope) {
             document.getElementById('btn9').value = shuffledLetras.charAt(9);
             document.getElementById('btn9').innerHTML = shuffledLetras.charAt(9);
 
-            for(var i=0; i<$scope.selecionadaTAM; i++){
-                var elemento = "preencher"+i;
-                document.getElementById(elemento).value="";
+            for (var i = 0; i < $scope.selecionadaTAM; i++) {
+                var elemento = "preencher" + i;
+                document.getElementById(elemento).value = "";
             }
-        }else{
+        } else {
             alert("TA ERRADO SEU MERDA!!!");
         }
     }
