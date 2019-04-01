@@ -28,11 +28,22 @@ body {
 .mostrarLetras {
     width: 80px;
     height: 80px;
-    font-size: 70px;
+    font-size: 50px;
     text-align: center;
     border: 5px;
     margin: 10px;
     border-color: black;
+    border-style: solid;
+}
+
+.mostrarLetrasErrado {
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    text-align: center;
+    border: 5px;
+    margin: 10px;
+    border-color: red;
     border-style: solid;
 }
 

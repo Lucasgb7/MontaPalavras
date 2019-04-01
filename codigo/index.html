@@ -25,7 +25,7 @@
     <div>
         <form class="score">
             <span>Pontuação:</span>
-            <button id="pontuacao" value=0 class="pontuacao" type="number"></button>
+            <button id="pontuacao" value=0 class="pontuacao" type="number">0</button>
         </form>
     </div>
 
@@ -33,7 +33,7 @@
 
     <div class="preenchimento">
         <form class="campo" ng-repeat="letra in faseDaVez.palavra track by $index">
-            <button value="" class="mostrarLetras" type="text" ng-click="removeLetra()"></button>
+            <button id="preencher{{$index}}" value="" class="mostrarLetras" type="text" ng-click="removeLetra($index)"></button>
         </form>
     </div>
 
