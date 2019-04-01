@@ -1,12 +1,12 @@
-body{
+body {
     background-color: #7aecf4;
 }
 
-.img1{
+.img1 {
     text-align: center;
 }
 
-.imagem{
+.imagem {
     position: relative;
     top: 40px;
     border: 5px;
@@ -14,21 +14,21 @@ body{
     border-style: solid;
 }
 
-.preenchimento{
+.preenchimento {
     position: relative;
     top: 50px;
     text-align: center;
     width: 100%;
 }
 
-.campo{
+.campo {
     display: inline;
 }
 
-.mostrarLetras{
+.mostrarLetras {
     width: 80px;
     height: 80px;
-    font-size: 70px;
+    font-size: 50px;
     text-align: center;
     border: 5px;
     margin: 10px;
@@ -36,7 +36,18 @@ body{
     border-style: solid;
 }
 
-.score{
+.mostrarLetrasErrado {
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    text-align: center;
+    border: 5px;
+    margin: 10px;
+    border-color: red;
+    border-style: solid;
+}
+
+.score {
     position: absolute;
     left: 65%;
     top: 30px;
@@ -48,7 +59,7 @@ body{
     background-color: white;
 }
 
-.pontuacao{
+.pontuacao {
     width: 90px;
     height: 50px;
     font-size: 40px;
@@ -59,20 +70,18 @@ body{
     border-style: solid;
 }
 
-.verOrto{
+.verOrto {
     position: relative;
     left: 70%;
     top: -150px;
 }
 
-.div_letras{
+.div_letras {
     position: relative;
     top: 100px;
     text-align: center;
 }
 
-.letras{
+.letras {
     margin: 0px 10px 0px 10px;
 }
-
-
