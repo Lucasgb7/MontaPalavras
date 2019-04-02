@@ -61,82 +61,96 @@ app.controller('IndexController', function($scope) {
         }
     ]
     $scope.faseDaVez = selecionaNovaFase() // Define a fase inicial
+    $scope.nivelAtual = 0
 
     function selecionaNovaFase() { // Seleciona uma nova fase
-        if (!$scope.imagens_palavras.find(function(e){ 
-            return e.completada === false})) { zerouJogo() }
+        if (!$scope.imagens_palavras.find(function(e) {
+                return e.completada === false
+            })) { zerouJogo() }
         // Verifica se todas as fases já foram completas
-        do{
+        do {
             var indice = Math.floor(Math.random() * $scope.imagens_palavras.length) // Pega um indice pelo vetor de palavras
         } while ($scope.imagens_palavras[indice].completada) // Verifica se já foi completada
-        
+        $scope.nivelAtual++ // Atualiza o nivel atual para o próximo
+            $scope.tentativas = 0
         return $scope.imagens_palavras[indice] // Retorna a que não foi completada
     }
 
-    function zerouJogo(){
-        window.location = 'congratulations.html'
+    function zerouJogo() {
+        window.location = 'congratulations.html' // 
     }
 
-    $scope.addLetra = function(letra){
-        for(var i = 0; i < $scope.faseDaVez.palavra.length; i++){
+    $scope.addLetra = function(letra) {
+        for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
             var elemento = 'preencher' + i
-            if(document.getElementById(elemento).innerHTML == ""){
+            if (document.getElementById(elemento).innerHTML == "") {
                 document.getElementById(elemento).innerHTML = letra
                 break
             }
         }
     }
 
-    $scope.removeLetra = function(index){
+    $scope.removeLetra = function(index) {
         var elemento = 'preencher' + index
         document.getElementById(elemento).innerHTML = ""
         document.getElementById(elemento).className = "mostrarLetras"
     }
 
-    $scope.confirma = function(){
-        if(document.getElementById('btn-confirma').innerHTML == 'Verificar Ortografia'){
-            $scope.corrige();
-        }else{
-            $scope.next();
+    $scope.confirma = function() {
+        if (document.getElementById('btn-confirma').innerHTML == 'Verificar Ortografia') {
+            $scope.corrige()
+        } else {
+            $scope.next()
         }
     }
 
-    $scope.corrige = function(){
+    $scope.corrige = function() {
         var palavraPreenchida = ""
-
-        for(var i = 0; i < $scope.faseDaVez.palavra.length; i++){
-            var elemento = "preencher" + i
-            palavraPreenchida += document.getElementById(elemento).innerHTML;
-        }
-        if(palavraPreenchida == $scope.faseDaVez.palavra){
-            for(var i = 0; i < $scope.faseDaVez.palavra.length; i++){
+        $scope.tentativas++
+            for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
+                var elemento = "preencher" + i
+                palavraPreenchida += document.getElementById(elemento).innerHTML;
+            }
+        if (palavraPreenchida == $scope.faseDaVez.palavra) {
+            for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
                 var elemento = "preencher" + i
                 document.getElementById(elemento).className = 'mostrarLetrasCerto'
             }
 
-            document.getElementById('btn-confirma').innerHTML = 'Avançar'          
-        }else{
-            for(var i = 0; i < $scope.faseDaVez.palavra.length; i++){
-                var elemento = 'preencher' + i
-                if (document.getElementById(elemento).innerHTML != $scope.faseDaVez.palavra.charAt(i)) {
-                    document.getElementById(elemento).className = 'mostrarLetrasErrado'
-                }else{
-                    document.getElementById(elemento).className = 'mostrarLetrasCerto'
+            document.getElementById('btn-confirma').innerHTML = 'Avançar'
+        } else {
+            if ($scope.tentativas >= 3) {
+                for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
+                    var elemento = 'preencher' + i
+                    if (document.getElementById(elemento).innerHTML != $scope.faseDaVez.palavra.charAt(i)) {
+                        document.getElementById(elemento).className = 'mostrarLetrasErrado'
+                    } else {
+                        document.getElementById(elemento).className = 'mostrarLetrasCerto'
+                    }
                 }
+            } else {
+                alert('Algo de errado não está certo!')
             }
         }
     }
 
-    $scope.next = function(){
-        var pontuacao = parseInt(document.getElementById('pontuacao').innerHTML, 10) + $scope.faseDaVez.palavra.length
+    $scope.next = function() {
+        var pontuacao = parseInt(document.getElementById('pontuacao').innerHTML, 10)
+        if ($scope.tentativas >= 3) {
+            pontuacao += 1
+        } else if ($scope.tentativas == 2) {
+            pontuacao += 2
+        } else {
+            pontuacao += 3
+        }
         document.getElementById('pontuacao').innerHTML = pontuacao
 
-        for(var i = 0; i < $scope.faseDaVez.palavra.length; i++){
+        for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
             var elemento = 'preencher' + i
             document.getElementById(elemento).innerHTML = ""
             document.getElementById(elemento).className = 'mostrarLetras'
         }
-        
+
         document.getElementById('btn-confirma').innerHTML = 'Verificar Ortografia'
 
         $scope.faseDaVez.completada = true
