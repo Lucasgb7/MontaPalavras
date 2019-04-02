@@ -19,9 +19,9 @@
 
 <body ng-app="app" ng-controller="IndexController">
 
-    <div>
-        <span>Nivel</span>
-        <span>{{nivelAtual}}/9</span>
+    <div id="level">
+        <span>Nivel:</span>
+        <button  value=0 class="pontuacao" type="number">{{nivelAtual}}/9</button>
     </div>
 
     <div class="img1">
@@ -35,7 +35,7 @@
         </form>
     </div>
 
-    <button type="button" id="btn-confirma" class="btn btn-success verOrto" ng-click="confirma()">Verificar Ortografia</button>
+    <button type="button" id="btn-confirma" class="btn verOrto" ng-click="confirma()">Verificar Ortografia</button>
 
     <div class="preenchimento">
         <form class="campo" ng-repeat="letra in faseDaVez.palavra track by $index">

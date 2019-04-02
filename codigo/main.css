@@ -19,6 +19,7 @@ body {
     top: 50px;
     text-align: center;
     width: 100%;
+    
 }
 
 .campo {
@@ -60,10 +61,11 @@ body {
 
 .score {
     position: absolute;
-    left: 65%;
-    top: 30px;
+    text-align: center;
+    left: 5%;
+    top: 40px;
     font-size: 40px;
-    border: 5px;
+    border: 3px;
     margin: 10px;
     border-color: black;
     border-style: solid;
@@ -71,8 +73,8 @@ body {
 }
 
 .pontuacao {
-    width: 90px;
-    height: 50px;
+    width: 80px;
+    height: 60px;
     font-size: 40px;
     text-align: center;
     border: 1px;
@@ -81,10 +83,31 @@ body {
     border-style: solid;
 }
 
+#level{
+    position: absolute;
+    text-align: center;
+    left: 5%;
+    top: 130px;
+    font-size: 40px;
+    border: 3px;
+    margin: 10px;
+    border-color: black;
+    border-style: solid;
+    background-color: white;
+}
+
 .verOrto {
-    position: relative;
-    left: 70%;
-    top: -150px;
+    position: absolute;
+    color: white;
+    background-color: rgb(57, 199, 32);
+    height: 50px;
+    left: 75%;
+    top: 60px;
+}
+
+.verOrto:hover{
+    color: white;
+    background-color: rgb(0, 119, 255);
 }
 
 .div_letras {
@@ -95,4 +118,22 @@ body {
 
 .letras {
     margin: 0px 10px 0px 10px;
+    width: 55px;
+    height: 50px;
+    text-align: center;
+   
+   
+}
+/**Classe pra deixar cinza quando a letra ja foi usada **/
+.letrasfaded{
+    color: rgb(196, 201, 207);
+    background-color: rgb(110, 115, 121);
+    border-color: rgb(110, 115, 121);
+}
+/**N sei se precisa mas fiz, quando ela ja foi usada e alguem coloca o mause em cima ela continua a msm, se n ela fica azul
+pq algum corno usa classes de btn prontas e n sei c vai qrer tirar**/
+.letrasfaded:hover{
+    color: rgb(196, 201, 207);
+    background-color: rgb(96, 122, 153);
+    border-color: rgb(110, 115, 121);
 }

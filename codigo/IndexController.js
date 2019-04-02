@@ -19,13 +19,13 @@ app.controller('IndexController', function($scope) {
         },
         {
             palavra: "CACHORRO",
-            letras: "ÔCQHARÃPOJ",
+            letras: "ÔCQHARÃPOR",
             imagem: "../imagens/cachorro.png",
             completada: false
         },
         {
             palavra: "CARRO",
-            letras: "KCVARÇOU",
+            letras: "KCRARÇOU",
             imagem: "../imagens/carro.png",
             completada: false
         },
@@ -43,7 +43,7 @@ app.controller('IndexController', function($scope) {
         },
         {
             palavra: "PÁSSARO",
-            letras: "LÁCARFPOAS",
+            letras: "LÁCARSPOAS",
             imagem: "../imagens/passaro.png",
             completada: false
         },
