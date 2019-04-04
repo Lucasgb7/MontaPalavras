@@ -1,6 +1,6 @@
 Projeto de Engenharia de Software
 
-Nome: Jogo de Palavras e Imagens
+Nome: Monta Palavras
 
 - Alunos:   George de Borba Nardes
             Jonath Wesley Herdt
