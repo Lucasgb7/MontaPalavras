@@ -82,8 +82,8 @@ app.controller('IndexController', function($scope) {
     }
 
     $scope.addLetra = function(letra, index) {
-        botao = "btn"+index
-        if(document.getElementById(botao).className != "btn btn-primary btn-lg letraDesabilitada"){
+        botao = "btn" + index
+        if (document.getElementById(botao).className != "btn btn-primary btn-lg letraDesabilitada") {
             for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
                 var elemento = 'preencher' + i
                 if (document.getElementById(elemento).innerHTML == "") {
@@ -100,13 +100,13 @@ app.controller('IndexController', function($scope) {
         value = document.getElementById(elemento).innerHTML
         document.getElementById(elemento).innerHTML = ""
         document.getElementById(elemento).className = "mostrarLetras"
-        for(var i=0; i<$scope.faseDaVez.letras.length; i++){
-            if($scope.faseDaVez.letras.charAt(i) == value){
-                botao = "btn"+i
-                if(document.getElementById(botao).className == "btn btn-primary btn-lg letraDesabilitada"){
+        for (var i = 0; i < $scope.faseDaVez.letras.length; i++) {
+            if ($scope.faseDaVez.letras.charAt(i) == value) {
+                botao = "btn" + i
+                if (document.getElementById(botao).className == "btn btn-primary btn-lg letraDesabilitada") {
                     document.getElementById(botao).className = "btn btn-primary btn-lg letras"
                     break
-                } 
+                }
             }
         }
     }
@@ -121,6 +121,7 @@ app.controller('IndexController', function($scope) {
 
     $scope.corrige = function() {
         var palavraPreenchida = ""
+        $scope.algoErrado = false
         $scope.tentativas++
             for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
                 var elemento = "preencher" + i
@@ -144,7 +145,7 @@ app.controller('IndexController', function($scope) {
                     }
                 }
             } else {
-                alert('Algo de errado não está certo!')
+                $scope.algoErrado = true
             }
         }
     }
@@ -165,8 +166,8 @@ app.controller('IndexController', function($scope) {
             document.getElementById(elemento).innerHTML = ""
             document.getElementById(elemento).className = 'mostrarLetras'
         }
-        for(var i=0; i<$scope.faseDaVez.letras.length; i++){
-            var botao = 'btn'+i
+        for (var i = 0; i < $scope.faseDaVez.letras.length; i++) {
+            var botao = 'btn' + i
             document.getElementById(botao).className = "btn btn-primary btn-lg letras"
         }
 

@@ -19,7 +19,6 @@ body {
     top: 130px;
     text-align: center;
     width: 100%;
-    
 }
 
 .campo {
@@ -83,7 +82,7 @@ body {
     border-style: solid;
 }
 
-#level{
+#level {
     position: absolute;
     text-align: center;
     left: 5%;
@@ -105,7 +104,7 @@ body {
     top: 60px;
 }
 
-.verOrto:hover{
+.verOrto:hover {
     color: white;
     background-color: rgb(0, 119, 255);
 }
@@ -121,24 +120,28 @@ body {
     width: 55px;
     height: 50px;
     text-align: center;
-   
-   
 }
+
+
 /**Classe pra deixar cinza quando a letra ja foi usada **/
-.letrasfaded{
+
+.letrasfaded {
     color: rgb(196, 201, 207);
     background-color: rgb(110, 115, 121);
     border-color: rgb(110, 115, 121);
 }
+
+
 /**N sei se precisa mas fiz, quando ela ja foi usada e alguem coloca o mause em cima ela continua a msm, se n ela fica azul
 pq algum corno usa classes de btn prontas e n sei c vai qrer tirar**/
-.letrasfaded:hover{
+
+.letrasfaded:hover {
     color: rgb(196, 201, 207);
     background-color: rgb(96, 122, 153);
     border-color: rgb(110, 115, 121);
 }
 
-.letraDesabilitada{
+.letraDesabilitada {
     margin: 0px 10px 0px 10px;
     width: 55px;
     height: 50px;
@@ -146,7 +149,14 @@ pq algum corno usa classes de btn prontas e n sei c vai qrer tirar**/
     background-color: gray;
 }
 
-.letraDesabilitada:hover{
+.letraDesabilitada:hover {
     background-color: gray;
     border-color: gray;
+}
+
+.alertaErro {
+    position: relative;
+    left: 70%;
+    color: red;
+    font-weight: bold;
 }

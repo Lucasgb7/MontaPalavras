@@ -21,7 +21,7 @@
 
     <div id="level">
         <span>Nivel:</span>
-        <button  value=0 class="pontuacao" type="number">{{nivelAtual}}/10</button>
+        <button value=0 class="pontuacao" type="number">{{nivelAtual}}/10</button>
     </div>
 
     <div class="img1">
@@ -36,6 +36,10 @@
     </div>
 
     <button type="button" id="btn-confirma" class="btn verOrto" ng-click="confirma()">Verificar Ortografia</button>
+
+    <div ng-show="algoErrado" class="alertaErro">
+        Verifique a ortografia e tente novamente!
+    </div>
 
     <div class="preenchimento">
         <form class="campo" ng-repeat="letra in faseDaVez.palavra track by $index">
