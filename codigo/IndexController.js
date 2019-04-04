@@ -7,7 +7,7 @@ app.controller('IndexController', function($scope) {
         },
         {
             palavra: "BICICLETA",
-            letras: "ÇBVICÁILTETNA",
+            letras: "ÇBVICÁILTETCNA",
             imagem: "../imagens/bicicleta.png",
             completada: false
         },
@@ -19,7 +19,7 @@ app.controller('IndexController', function($scope) {
         },
         {
             palavra: "CACHORRO",
-            letras: "ÔCQHARÃPOR",
+            letras: "ÔCQHRACROPOR",
             imagem: "../imagens/cachorro.png",
             completada: false
         },
@@ -31,7 +31,7 @@ app.controller('IndexController', function($scope) {
         },
         {
             palavra: "GALINHA",
-            letras: "TAZLQNRHIBG",
+            letras: "TAZLQANRHIBG",
             imagem: "../imagens/galinha.png",
             completada: false
         },
@@ -49,7 +49,7 @@ app.controller('IndexController', function($scope) {
         },
         {
             palavra: "PEIXE",
-            letras: "BPIQXLÊEV",
+            letras: "BPIEQXLÊEV",
             imagem: "../imagens/peixe.png",
             completada: false
         },
@@ -61,7 +61,8 @@ app.controller('IndexController', function($scope) {
         }
     ]
     $scope.faseDaVez = selecionaNovaFase() // Define a fase inicial
-    $scope.nivelAtual = 0
+    $scope.nivelAtual = 1
+    $scope.valores = []
 
     function selecionaNovaFase() { // Seleciona uma nova fase
         if (!$scope.imagens_palavras.find(function(e) {
@@ -77,23 +78,37 @@ app.controller('IndexController', function($scope) {
     }
 
     function zerouJogo() {
-        window.location = 'congratulations.html' // 
+        alert("PARABÉNS!")
     }
 
-    $scope.addLetra = function(letra) {
-        for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
-            var elemento = 'preencher' + i
-            if (document.getElementById(elemento).innerHTML == "") {
-                document.getElementById(elemento).innerHTML = letra
-                break
+    $scope.addLetra = function(letra, index) {
+        botao = "btn"+index
+        if(document.getElementById(botao).className != "btn btn-primary btn-lg letraDesabilitada"){
+            for (var i = 0; i < $scope.faseDaVez.palavra.length; i++) {
+                var elemento = 'preencher' + i
+                if (document.getElementById(elemento).innerHTML == "") {
+                    document.getElementById(elemento).innerHTML = letra
+                    document.getElementById(botao).className = "btn btn-primary btn-lg letraDesabilitada"
+                    break
+                }
             }
         }
     }
 
     $scope.removeLetra = function(index) {
         var elemento = 'preencher' + index
+        value = document.getElementById(elemento).innerHTML
         document.getElementById(elemento).innerHTML = ""
         document.getElementById(elemento).className = "mostrarLetras"
+        for(var i=0; i<$scope.faseDaVez.letras.length; i++){
+            if($scope.faseDaVez.letras.charAt(i) == value){
+                botao = "btn"+i
+                if(document.getElementById(botao).className == "btn btn-primary btn-lg letraDesabilitada"){
+                    document.getElementById(botao).className = "btn btn-primary btn-lg letras"
+                    break
+                } 
+            }
+        }
     }
 
     $scope.confirma = function() {
@@ -149,6 +164,10 @@ app.controller('IndexController', function($scope) {
             var elemento = 'preencher' + i
             document.getElementById(elemento).innerHTML = ""
             document.getElementById(elemento).className = 'mostrarLetras'
+        }
+        for(var i=0; i<$scope.faseDaVez.letras.length; i++){
+            var botao = 'btn'+i
+            document.getElementById(botao).className = "btn btn-primary btn-lg letras"
         }
 
         document.getElementById('btn-confirma').innerHTML = 'Verificar Ortografia'

@@ -21,7 +21,7 @@
 
     <div id="level">
         <span>Nivel:</span>
-        <button  value=0 class="pontuacao" type="number">{{nivelAtual}}/9</button>
+        <button  value=0 class="pontuacao" type="number">{{nivelAtual}}/10</button>
     </div>
 
     <div class="img1">
@@ -44,7 +44,7 @@
     </div>
 
     <div class="div_letras">
-        <button ng-repeat="letra in faseDaVez.letras track by $index" type="button" value="{{letra}}" class="btn btn-primary btn-lg letras" ng-click="addLetra(letra)">{{letra}}</button>
+        <button id="btn{{$index}}" ng-repeat="letra in faseDaVez.letras track by $index" type="button" value="{{letra}}" class="btn btn-primary btn-lg letras" ng-click="addLetra(letra,$index)">{{letra}}</button>
     </div>
 
     <!-- Controller -->
