@@ -1,11 +1,13 @@
-Projeto de Engenharia de Software
+# Projeto de Engenharia de Software
 
-Nome: Monta Palavras
+##Nome: Monta Palavras
 
-- Alunos:   George de Borba Nardes
-            Jonath Wesley Herdt
-            Lucas Jose da Cunha
-            Luiz Alberto Zimmerman Zabel Martins Pinto
-            Matheus Emanuel Carraro de Souza
+### Alunos:
+* George de Borba Nardes
+* Jonath Wesley Herdt
+* Lucas Jose da Cunha
+* Luiz Alberto Zimmerman Zabel Martins Pinto
+* Matheus Emanuel Carraro de Souza
 
-- Professora: Adriana Gomes Alves
+### Professora: 
+* Adriana Gomes Alves
